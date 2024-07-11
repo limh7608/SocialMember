@@ -12,7 +12,7 @@ public class DbConfig {
     public static DataSource dataSource() {
         DataSource ds = new DataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost/socialMember?characterEncoding=utf8");
+        ds.setUrl("jdbc:mysql://localhost/social?characterEncoding=utf8");
         ds.setUsername("root");
         ds.setPassword("1234");
         ds.setInitialSize(2);

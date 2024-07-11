@@ -17,6 +17,10 @@ public class IndexCtrl {
 	public void setIndexSvc(IndexSvc indexSvc) {
 		this.indexSvc = indexSvc;
 	}
-	
+	@GetMapping("/index")
+	public String index () {
+		
+		return "/index";
+	}
 
 }

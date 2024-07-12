@@ -25,7 +25,7 @@ public class LoginCtrl {
 	public String LoginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		return "login/loginForm";
+		return "member/loginForm";
 	}
 	
 	@PostMapping("/LoginAction")

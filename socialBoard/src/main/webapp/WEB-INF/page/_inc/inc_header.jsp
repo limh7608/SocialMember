@@ -31,17 +31,8 @@
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">${memberInfo.mi_name}님</span>
     </div>
-    <ul class="nav-links">
-      <li>
-        <a href="logout">
-          <i class='bx bx-history'></i>
-          <span class="link_name">logout</span>
-        </a>
-      </li>
-</ul>
   </div>
   <section class="home-section">
     <div class="home-content">
-      <i class='bx bx-menu' ></i>
 	<a href="/socialBoard/" style="color:black;text-decoration:none;"><span class="text">socialBoard</span></a>
     </div>

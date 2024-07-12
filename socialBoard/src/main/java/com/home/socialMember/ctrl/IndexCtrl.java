@@ -18,7 +18,8 @@ public class IndexCtrl {
 		this.indexSvc = indexSvc;
 	}
 	@GetMapping("/index")
-	public String index () {
+	public String index (HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		
 		return "/index";
 	}

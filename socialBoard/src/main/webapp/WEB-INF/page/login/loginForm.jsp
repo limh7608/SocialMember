@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="com.home.socialMember.vo.MemberInfo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +15,7 @@
 body{
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
+    width: 100%; display: flex; flex-flow: column; align-items: center; margin-top: 3em;
 }
 .login-wrapper{
     width: 400px;
@@ -78,8 +79,4 @@ body{
         </form>
     </div>
 </body>
-<script>
-
-
-</script>
 </html>

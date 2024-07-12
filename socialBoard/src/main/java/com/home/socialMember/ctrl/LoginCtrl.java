@@ -1,5 +1,7 @@
 package com.home.socialMember.ctrl;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,15 +24,8 @@ public class LoginCtrl {
 	@GetMapping("/LoginForm")
 	public String LoginForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		// login이 되어있을 때는 못들어오게 해야 됨 어디서 작업?
-		HttpSession session = request.getSession();
-		MemberInfo memberInfo = (MemberInfo)session.getAttribute("memberInfo");
 		
-		if (memberInfo == null) {
-			return "login/loginForm";
-		}
-		
-		return "";
+		return "login/loginForm";
 	}
 	
 	@PostMapping("/LoginAction")
@@ -39,16 +34,35 @@ public class LoginCtrl {
 		
 		MemberInfo memberInfo = new MemberInfo();
 		
+		
 		memberInfo.setMi_email(request.getParameter("mi_email"));
 		memberInfo.setMi_pw(request.getParameter("mi_pw"));
 		
 		memberInfo = loginSvc.getCheckMember(memberInfo);
+		HttpSession session = request.getSession();
 		
-		if(memberInfo != null) {
+		if(memberInfo == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			
+			out.println("<script>");
+			out.println("alert('아이디와 비밀번호가 틀렸습니다.')");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+		} 
+		
+		session.setAttribute("memberInfo", memberInfo);
 		model.addAttribute("memberInfo", memberInfo);
-		return "/main";
-		}
 		
-		return "login/loginForm";
+		return "/main";
 	}
+	
+	@RequestMapping("/Logout")
+	public String Logout (HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
 }

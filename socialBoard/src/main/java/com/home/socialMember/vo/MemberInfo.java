@@ -1,9 +1,9 @@
 package com.home.socialMember.vo;
 
 public class MemberInfo {
-	private String  mi_email, mi_pw, mi_name, mi_birth, mi_phone;
+	private String  mi_email, mi_pw, mi_name, mi_birth, mi_phone,mi_gender;
 	private int idx;
-	private boolean mi_gender, mi_status;
+	private boolean mi_status;
 	
 	
 	public String getMi_email() {
@@ -42,13 +42,13 @@ public class MemberInfo {
 	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public boolean isMi_gender() {
+	public String getMi_gender() {
 		return mi_gender;
 	}
-	public void setMi_gender(boolean mi_gender) {
+	public void setMi_gender(String mi_gender) {
 		this.mi_gender = mi_gender;
 	}
-	public boolean isMi_status() {
+	public boolean getMi_status() {
 		return mi_status;
 	}
 	public void setMi_status(boolean mi_status) {

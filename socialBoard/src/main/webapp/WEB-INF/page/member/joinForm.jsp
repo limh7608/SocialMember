@@ -90,12 +90,14 @@ body{
         	<div><input type="text" class="mi_email" name="mi_email" placeholder="Email" /><button type="button" id="emailCheck">중복체크</button></div>  
             <div id="result"></div>
             비밀번호
-            <input type="password" name="mi_pw" placeholder="Password">
+            <input type="password" name="mi_pw" id="mi_pw" placeholder="Password">
             비밀번호 확인
-            <input type="password" name="CheckPw" placeholder="Password">
+            <input type="password" name="CheckPw" id="CheckPw" placeholder="Password">
+            <div id="checkPwResult"></div>
             <input type="text" name="mi_name" placeholder="이름">
             <input type="date" name="mi_birth" id="date" min="1900-01-01">	
-            <input type="text" name="mi_phone" placeholder="휴대폰 번호">
+            <input type="text" name="mi_phone" id="mi_phone" placeholder="휴대폰 번호">
+            <div id="phoneResult"></div>
             <div>
             <input type="radio" name="mi_gender" value="male" />남자
             <input type="radio" name="mi_gender" value="female" />여자    
@@ -129,6 +131,7 @@ body{
 	
 	
     $(document).ready(function() {
+    	
         $('#emailCheck').click(function() {
             var email = $('.mi_email').val(); // 이메일 입력값 가져오기
             var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식 정규식
@@ -157,6 +160,38 @@ body{
                 }
             });
         });
+        
+        // 비밀번호 확인 검사
+        $('#CheckPw').on('input', function() {
+            var password = $('#mi_pw').val();
+            var confirmPassword = $('#CheckPw').val();
+
+   	        if (password !== confirmPassword) {
+   	            $('#checkPwResult').text('비밀번호가 일치하지 않습니다.').css('color', 'red');
+   	        } else {
+   	            $('#checkPwResult').text('비밀번호가 일치합니다.').css('color', 'green');
+   	        }
+       	});
+        
+        $('#mi_phone').on('input', function() {
+            var phone = $('#mi_phone').val().replace(/[^0-9]/g, ''); // 숫자 외 문자 제거
+            var phonePattern = /^01[0|1|6|7|8|9][0-9]{7,8}$/; // 한국 휴대전화번호 형식 정규식
+
+            if (phone.length > 3 && phone.length <= 7) {
+                phone = phone.replace(/(\d{3})(\d{1,4})/, '$1-$2');
+            } else if (phone.length > 7) {
+                phone = phone.replace(/(\d{3})(\d{4})(\d{1,4})/, '$1-$2-$3');
+            }
+
+            $('#mi_phone').val(phone);
+
+            if (!phonePattern.test(phone.replace(/-/g, ''))) {
+                $('#phoneResult').text('유효하지 않은 휴대전화번호 형식입니다.').css('color', 'red');
+            } else {
+                $('#phoneResult').text('유효한 휴대전화번호 형식입니다.').css('color', 'green');
+            }
+        });
+        
     });
 
 	

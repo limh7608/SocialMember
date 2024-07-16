@@ -16,5 +16,11 @@ public class MemberSvc {
 		
 		return result;
 	}
+
+	public int memberRegistration(MemberInfo memberInfo) {
+		int result = memberDao.memberRegistration(memberInfo);
+		
+		return result;
+	}
 }
 

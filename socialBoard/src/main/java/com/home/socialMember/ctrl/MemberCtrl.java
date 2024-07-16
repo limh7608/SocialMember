@@ -1,5 +1,6 @@
 package com.home.socialMember.ctrl;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +39,31 @@ public class MemberCtrl {
         response.put("result", result);
         return ResponseEntity.ok(response);
     }
+	@PostMapping("/JoinAction")
+	public String JoinAction (HttpServletRequest request, HttpServletResponse response) throws Exception{
+		MemberInfo memberInfo = new MemberInfo();
+		memberInfo.setMi_email(request.getParameter("mi_email"));
+		memberInfo.setMi_pw(request.getParameter("mi_pw"));
+		memberInfo.setMi_name(request.getParameter("mi_name"));
+		memberInfo.setMi_birth(request.getParameter("mi_birth"));
+		memberInfo.setMi_gender(request.getParameter("mi_gender"));
+		
+		int result = memberSvc.memberRegistration(memberInfo);
+		
+		if (result == 1) {
+		    response.setContentType("text/html; charset=utf-8");
+		    PrintWriter out = response.getWriter();
+		    out.println("<script>");
+		    out.println("alert('정상 가입되었습니다!!.');");
+		    out.println("location.href='LoginForm';");  // alert 후에 로그인 폼으로 리다이렉션
+		    out.println("</script>");
+		    out.close();
+		    return null;  // 클라이언트 측에서 리다이렉션을 수행하므로 서버 측에서는 더 이상 경로를 반환하지 않음
+		} else {
+		    return "redirect:/member/joinForm";
+		}
+		
+	}
 	
 	
 }

@@ -10,5 +10,11 @@ public class MemberSvc {
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
+
+	public int checkEmailDuplicate(String email) {
+		int result = memberDao.checkEmailDuplicate(email);
+		
+		return result;
+	}
 }
 

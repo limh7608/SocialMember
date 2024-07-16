@@ -75,7 +75,10 @@ body{
             <label for="remember-check">
                 <input type="checkbox" id="remember-check">아이디 저장하기
             </label>
-            <input type="submit" value="Login">
+            <label>
+                <a href="JoinForm" style="color: black; text-decoration: none;">회원가입</a>
+            </label>
+                <input style="cursor: pointer;" type="submit" value="Login">
         </form>
     </div>
 </body>

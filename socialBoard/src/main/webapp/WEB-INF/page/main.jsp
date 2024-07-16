@@ -18,11 +18,11 @@ MemberInfo memberInfo = (MemberInfo)request.getAttribute("memberInfo");
 <body style="width: 100%; display: flex; flex-flow: column; align-items: center; margin-top: 3em;">
 	<h1>Main</h1>
 	<%if(memberInfo == null){ %>
-	<div>
+	<div style="cursor: pointer;">
 		<a onclick="location.href='LoginForm'">로그인</a>
 	</div>
 	<%} else { %>
-	<div>
+	<div style="cursor: pointer;">
 		<a onclick="location.href='Logout'">로그아웃</a>
 	</div>
 	<%} %>

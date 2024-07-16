@@ -13,8 +13,8 @@ public class LoginSvc {
 	}
 
 	public MemberInfo getCheckMember(MemberInfo memberInfo) {
-		MemberInfo memeberInfo = loginDao.getCheckMember(memberInfo);
+		memberInfo = loginDao.getCheckMember(memberInfo);
 		
-		return memeberInfo;
+		return memberInfo;
 	}
 }

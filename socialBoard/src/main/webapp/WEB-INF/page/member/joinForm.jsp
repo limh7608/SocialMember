@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
 *{
@@ -65,20 +66,39 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
 }
+#emailCheck{
+	width: 20%;
+    height: 48px;
+    background-color: #6A24FE;
+    border-radius: 5px;
+    color: #fff;
+}
+.mi_email{
+	width: 80%;
+    height: 48px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+
 </style>
 <body>
     <div class="join-wrapper">
-        <h2>join</h2>
+        <h2>회원가입</h2>
         <form method="post" action="JoinAction" id="join-form">
-            <input type="text" name="mi_email" placeholder="Email"><input type="button" id="emailCheck">이메일 중복체크
+        	<div><input type="text" class="mi_email" name="mi_email" placeholder="Email" /><button type="button" id="emailCheck">중복체크</button></div>  
+            <div id="result"></div>
+            비밀번호
             <input type="password" name="mi_pw" placeholder="Password">
+            비밀번호 확인
             <input type="password" name="CheckPw" placeholder="Password">
             <input type="text" name="mi_name" placeholder="이름">
             <input type="date" name="mi_birth" id="date" min="1900-01-01">	
             <input type="text" name="mi_phone" placeholder="휴대폰 번호">
             <div>
-            <input type="radio" name="mi_gender" value="male" placeholder="남자">
-            <input type="radio" name="mi_gender" value="female" placeholder="여자">    
+            <input type="radio" name="mi_gender" value="male" />남자
+            <input type="radio" name="mi_gender" value="female" />여자    
             </div>
             <input type="submit" value="join">
         </form>
@@ -106,6 +126,39 @@ body{
 	        console.log(dateControl.valueAsNumber); // JavaScript 타임스탬프 (밀리초)
     	});
 	});
+	
+	
+    $(document).ready(function() {
+        $('#emailCheck').click(function() {
+            var email = $('.mi_email').val(); // 이메일 입력값 가져오기
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식 정규식
+
+            if (!emailPattern.test(email)) {
+                $('#result').text('유효하지 않은 이메일 형식입니다.').css('color', 'red');
+                return; // 이메일 형식이 유효하지 않으면 AJAX 요청을 보내지 않음
+            }
+            $.ajax({
+                url: './EmailCheckDuplicate', // 요청을 보낼 URL
+                type: 'POST', // 요청 방법
+                data: { "mi_email": email }, // 서버로 전송할 데이터
+                dataType: 'json', // 서버에서 반환되는 데이터 형식
+                success: function(response) {
+                    // 요청이 성공했을 때 실행할 코드
+                    if (response.result === 1) {
+                        $('#result').text('이메일이 유효합니다.').css('color', 'blue');
+                    } else {
+                        $('#result').text('이메일이 유효하지 않습니다.').css('color', 'red');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청이 실패했을 때 실행할 코드
+                    $('#result').text('오류가 발생했습니다.');
+                    console.error(error);
+                }
+            });
+        });
+    });
+
 	
 </script>
 </html>

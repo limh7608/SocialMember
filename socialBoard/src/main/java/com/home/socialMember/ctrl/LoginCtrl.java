@@ -55,7 +55,7 @@ public class LoginCtrl {
 		session.setAttribute("memberInfo", memberInfo);
 		model.addAttribute("memberInfo", memberInfo);
 		
-		return "/main";
+		return "/index";
 	}
 	
 	@RequestMapping("/Logout")

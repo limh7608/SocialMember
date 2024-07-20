@@ -55,15 +55,20 @@ public class MemberCtrl {
 		    PrintWriter out = response.getWriter();
 		    out.println("<script>");
 		    out.println("alert('정상 가입되었습니다!!.');");
-		    out.println("location.href='LoginForm';");  // alert 후에 로그인 폼으로 리다이렉션
+		    out.println("location.href='/socialBoard/';");  // alert 후에 로그인 폼으로 리다이렉션
 		    out.println("</script>");
 		    out.close();
 		    return null;  // 클라이언트 측에서 리다이렉션을 수행하므로 서버 측에서는 더 이상 경로를 반환하지 않음
 		} else {
 		    return "redirect:/member/joinForm";
 		}
-		
 	}
+	@GetMapping("/MyPage")
+	public String MyPage(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		
+		return "member/myPage";
+	}
+	
 	
 	
 }

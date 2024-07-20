@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="resources/css/loginModal.css">
 </head>
 <body>
-    <button id="loginBtn">로그인</button>
     
     <div id="loginModal" class="modal">
         <div class="modal-content">

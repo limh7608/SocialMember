@@ -20,20 +20,9 @@ public class IndexCtrl {
 	@GetMapping("/")
 	public String index (HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
+		MemberInfo memberInfo = (MemberInfo)request.getAttribute("memberInfo");
 		
-		return "/index";
-	}
-	@GetMapping("/Elements")
-	public String Elements (HttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		
-		return "/elements";
-	}
-	@GetMapping("/Generic")
-	public String Generic (HttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		
-		return "/generic";
+		return "/main";
 	}
 
 }

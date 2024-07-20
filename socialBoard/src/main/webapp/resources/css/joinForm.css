@@ -1,0 +1,74 @@
+@charset "UTF-8";
+*{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+body{
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    width: 100%; display: flex; flex-flow: column; align-items: center; margin-top: 3em;
+}
+.join-wrapper{
+    width: 400px;
+    height: 350px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.join-wrapper > h2{
+    font-size: 24px;
+    color: #6A24FE;
+    margin-bottom: 20px;
+}
+#join-form > input{
+    width: 100%;
+    height: 48px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
+#join-form > input::placeholder{
+    color: #D2D2D2;
+}
+#join-form > input[type="submit"]{
+    color: #fff;
+    font-size: 16px;
+    background-color: #6A24FE;
+    margin-top: 20px;
+}
+#join-form > input[type="checkbox"]{
+    display: none;
+}
+#join-form > label{
+    color: #999999;
+}
+#join-form input[type="checkbox"] + label{
+    cursor: pointer;
+    padding-left: 26px;
+    background-image: url("checkbox.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#join-form input[type="checkbox"]:checked + label{
+    background-image: url("checkbox-active.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#emailCheck{
+	width: 20%;
+    height: 48px;
+    background-color: #6A24FE;
+    border-radius: 5px;
+    color: #fff;
+}
+.mi_email{
+	width: 80%;
+    height: 48px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #F8F8F8;
+}
